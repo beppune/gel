@@ -8,13 +8,22 @@ enum Token {
     OBRACK,
     CBRACK,
     NL,
+    CHAR(char),
     WORD(String),
+}
+
+fn lex<I>(it:I)
+    where I: Iterator<Item = char>,
+{
+
+
+
 }
 
 fn main() {
     
     let s = "on confirm { 
-log \"Request ${re.id} confirmed\"}";
+log \"Request ${re.id1} confirmed!\"}";
     let mut word = String::new();
     
     let mut it = s.chars().peekable();
@@ -54,7 +63,7 @@ log \"Request ${re.id} confirmed\"}";
                 word.clear();
                 word.push(c);
                 while let Some(p) = it.peek() {
-                    if !p.is_alphabetic() {
+                    if !p.is_alphanumeric() {
                         break;
                     }
                     word.push(*p);
@@ -63,7 +72,7 @@ log \"Request ${re.id} confirmed\"}";
                 println!( "{:?}", Token::WORD(word.clone()) );
             },
             _ => {
-                println!("{:?}", c);
+                println!("{:?}", Token::CHAR(c));
             },
         }
         o = it.next();
