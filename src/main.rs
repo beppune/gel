@@ -13,8 +13,8 @@ enum Token {
 
 fn main() {
     
-    //let s = "  \ton confirm log \"Request ${req.id} confirmed.\"\t";
-    let s = "on confirm { \nlog \"Request ${re.id} confirmed\"}";
+    let s = "on confirm { 
+log \"Request ${re.id} confirmed\"}";
     let mut word = String::new();
     
     let mut it = s.chars().peekable();
@@ -60,7 +60,7 @@ fn main() {
                     word.push(*p);
                     it.next();
                 }
-                println!( "WORD {:?}", Token::WORD(word.clone()) );
+                println!( "{:?}", Token::WORD(word.clone()) );
             },
             _ => {
                 println!("{:?}", c);
